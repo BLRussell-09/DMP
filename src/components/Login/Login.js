@@ -1,0 +1,74 @@
+import React, {Component} from 'react';
+import {Form, Button, Col, Row} from 'react-bootstrap';
+import auth from '../../firebase_requests/auth';
+import './Login.css';
+
+class Login extends Component
+{
+  state =
+  {
+    user: {
+      email: '',
+      password: ''
+    }
+  }
+
+  emailChange = e =>
+  {
+    const tempUser = {...this.state.user};
+    tempUser.email = e.target.value;
+    this.setState({user: tempUser});
+  };
+
+  passwordChange = e =>
+  {
+    const tempUser = {...this.state.user};
+    tempUser.password = e.target.value;
+    this.setState({user: tempUser});
+  };
+
+  login = e =>
+  {
+    const {user} = this.state;
+    e.preventDefault();
+    auth.loginUser(user)
+    .then(() =>
+    {
+      this.props.history.push('/pc');
+    }).catch((err) =>
+    {
+      console.error(err);
+    });
+  };
+
+  render()
+  {
+    return(
+      <div className="Login" >
+        <Row>
+          <Col md={{span: 6, offset: 3}}>
+            <Form>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email"  onChange={this.emailChange}/>
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" onChange={this.passwordChange}/>
+              </Form.Group>
+              <Button variant="primary" type="submit" onClick={this.login}>
+                Login
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+}
+
+export default Login;
