@@ -16,8 +16,7 @@ class WeaponDescription extends Component
       }
     return (
       <div>
-        <h3>Description</h3>
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '18rem' }} className="d-none" id="weapCard">
           <Card.Body>
             <Card.Title>{this.props.weapon.name}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">{this.props.weapon.dice_count + d + this.props.weapon.damage_dice }</Card.Subtitle>

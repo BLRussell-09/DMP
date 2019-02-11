@@ -16,8 +16,7 @@ class ItemDescription extends Component
       }
     return (
       <div>
-        <h3>Description</h3>
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '18rem' }} className="d-none" id="itemCard">
           <Card.Body>
             <Card.Title>{this.props.item.name}</Card.Title>
             <Card.Text>

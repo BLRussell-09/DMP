@@ -29,6 +29,8 @@ class WeaponsBay extends Component
         var tempWeapon = {...this.state.weapon};
         tempWeapon = weapon;
         this.setState({weapon: tempWeapon});
+        var card = document.getElementById("weapCard");
+        card.removeAttribute("class")
       }
 
       const xClick = () =>
@@ -52,6 +54,8 @@ class WeaponsBay extends Component
         var tempItem = {...this.state.item};
         tempItem = item;
         this.setState({item: tempItem});
+        var card = document.getElementById("itemCard");
+        card.removeAttribute("class")
       }
       return (
         <ListGroup.Item action key={item.id} onClick={itemClick}>
@@ -74,12 +78,12 @@ class WeaponsBay extends Component
               <WeaponDescription weapon={descriptionProp} reload={this.props.reload}/>
             </Col>
           </Row>
-          <h3>Items</h3>
           <Row>
             <AddItems character={charProp} reload={this.props.reload}/>
           </Row>
           <Row>
             <Col md={6}>
+              <h3>Items</h3>
               <ListGroup variant="flush">
                 {itemMaker}
               </ListGroup>
