@@ -3,6 +3,7 @@ import pcRequests from '../requests/pcRequests';
 import {Col, Row, OverlayTrigger, Button, Popover} from 'react-bootstrap';
 import AbilityBar from '../../AbilityScores/AbilityBar/AbilityBar';
 import SkillBar from '../../ProficiencySkills/SkillBar/SkillBar';
+import RaceBar from '../../RaceBar/RaceBar';
 import Bags from '../../Bags/Bags';
 
 class SinglePc extends Component
@@ -39,6 +40,7 @@ class SinglePc extends Component
     var weaponsProp = [];
     var itemsProp = [];
     var charProp = 0;
+    var characterP
 
     const nameBar = this.state.character.map((character) =>
     {
@@ -50,6 +52,7 @@ class SinglePc extends Component
       weaponsProp = character.weapons;
       itemsProp = character.items;
       charProp = character.id;
+      characterP = character
       var classes = character.playerClasses;
       classes.forEach(c => {
           classList.push(c.class_name);
@@ -93,7 +96,7 @@ class SinglePc extends Component
         <AbilityBar abilityScores={abilityScoresArr}/>
         <Row>
           <Col md={6}>
-            <SkillBar skills={skillsProp}/>
+            <SkillBar character={charProp} skills={skillsProp} reloadPc={this.getCharacter}/>
           </Col>
           <Bags items={itemsProp} weapons={weaponsProp} character={charProp} reloadPc={this.getCharacter}/>
         </Row>

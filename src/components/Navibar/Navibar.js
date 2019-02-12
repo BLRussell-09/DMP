@@ -17,9 +17,8 @@ class Navibar extends Component {
               {
                 authed ? (
                 <Navbar bg="dark" variant="dark">
-                  <Navbar.Brand href="#home">DMP</Navbar.Brand>
+                  <Navbar.Brand href="/">DMP</Navbar.Brand>
                     <Nav className="mr-auto">
-                      <Nav.Link href="/">Home</Nav.Link>
                       <Nav.Link href="/pc">Player Characters</Nav.Link>
                       <Nav.Link href="#pricing">NPC</Nav.Link>
 
