@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import {Button, Col, ListGroup, Row} from 'react-bootstrap';
 import firebase from 'firebase';
 import dmp from '../../firebase_requests/dmp';
+import RaceBar from '../RaceBar/RaceBar';
 
 class PcPage extends Component {
   state =
   {
-    pcs: []
+    pcs: [],
+    character: {}
   }
   componentDidMount()
   {
@@ -48,7 +50,12 @@ class PcPage extends Component {
         this.props.history.push(`/pc/${character.id}`);
       }
 
-      return ( <ListGroup.Item onClick={listItemClick} key={character.id}> {character.name} <span className="race">{character.race_name}</span></ListGroup.Item> );
+      const listItemHover = () =>
+      {
+        this.setState({character});
+      }
+
+      return ( <ListGroup.Item onClick={listItemClick} onMouseOver={listItemHover} key={character.id}> {character.name} <span className="race">{character.race_name}</span></ListGroup.Item> );
     });
 
     return (
@@ -62,6 +69,9 @@ class PcPage extends Component {
           </Col>
           <Col md={4}>
             <Button href="/pc/add">Add a Character</Button>
+          </Col>
+          <Col md={4}>
+            <RaceBar charProp={this.state.character}/>
           </Col>
         </Row>
       </div>
