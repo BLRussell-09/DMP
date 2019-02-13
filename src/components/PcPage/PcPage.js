@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Button, Col, ListGroup, Row, ButtonGroup} from 'react-bootstrap';
+import {Button, Col, Row, ButtonGroup} from 'react-bootstrap';
 import firebase from 'firebase';
 import dmp from '../../firebase_requests/dmp';
 import RaceBar from '../RaceBar/RaceBar';
+import './PcPage.css';
 
 class PcPage extends Component {
   state =
@@ -60,15 +61,15 @@ class PcPage extends Component {
 
     return (
       <div className="PcPage">
-        <h3>Players</h3>
         <Row>
-          <Col md={4}>
+          <Col md={4} className="pcBtnContainer">
+          <h3>Players</h3>
             <ButtonGroup vertical>
               {pcListItem}
             </ButtonGroup>
           </Col>
           <Col md={4}>
-            <Button href="/pc/add">Add a Character</Button>
+            <Button href="/pc/add" className="addButton">Add a Character</Button>
           </Col>
           <Col md={4}>
             <RaceBar charProp={this.state.character}/>
