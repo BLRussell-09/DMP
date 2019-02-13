@@ -31,4 +31,18 @@ const getPc = (id) =>
   })
 }
 
-export default {addPc, getPc};
+const updatePc = (pc, id) =>
+{
+  return new Promise((resolve, reject) =>
+  {
+    axios.put(`https://localhost:44312/api/pc/${id}`, pc)
+    .then((res) =>
+    {
+      resolve(res);
+    }).catch((err) =>
+    {
+      reject(err);
+    })
+  })
+}
+export default {addPc, getPc, updatePc};

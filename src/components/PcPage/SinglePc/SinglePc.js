@@ -3,6 +3,7 @@ import pcRequests from '../requests/pcRequests';
 import {Col, Row, OverlayTrigger, Button, Popover} from 'react-bootstrap';
 import AbilityBar from '../../AbilityScores/AbilityBar/AbilityBar';
 import SkillBar from '../../ProficiencySkills/SkillBar/SkillBar';
+import RaceBar from '../../RaceBar/RaceBar';
 import Bags from '../../Bags/Bags';
 
 class SinglePc extends Component
@@ -32,6 +33,15 @@ class SinglePc extends Component
     .catch();
   }
 
+  deleteCharacter = () =>
+  {
+    var id = this.props.match.params.id;
+    var pc = this.state.character[0];
+    pc.is_active = false;
+    this.props.history.push("/pc");
+    pcRequests.updatePc(pc, id);
+  }
+
   render()
   {
     var abilityScoresArr = [];
@@ -50,6 +60,7 @@ class SinglePc extends Component
       weaponsProp = character.weapons;
       itemsProp = character.items;
       charProp = character.id;
+      //characterP = character
       var classes = character.playerClasses;
       classes.forEach(c => {
           classList.push(c.class_name);
@@ -67,7 +78,7 @@ class SinglePc extends Component
         const Name = () => {
           return (
             <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-            <Button variant="success">{character.name}</Button>
+            <Button variant="success" >{character.name}</Button>
           </OverlayTrigger>
           );
         };
@@ -81,6 +92,7 @@ class SinglePc extends Component
           <Col md={2}><h5>Hit Points: {character.hit_points}</h5></Col>
           <Col md={2}><h5>Race: {character.race_name}</h5></Col>
           <Col md={2}><h5>Experience: {character.experience }</h5></Col>
+          <Col md={2}><Button variant="danger" onClick={this.deleteCharacter}>Delete Character</Button></Col>
         </Row>
 
       );
@@ -93,7 +105,7 @@ class SinglePc extends Component
         <AbilityBar abilityScores={abilityScoresArr}/>
         <Row>
           <Col md={6}>
-            <SkillBar skills={skillsProp}/>
+            <SkillBar character={charProp} skills={skillsProp} reloadPc={this.getCharacter}/>
           </Col>
           <Bags items={itemsProp} weapons={weaponsProp} character={charProp} reloadPc={this.getCharacter}/>
         </Row>

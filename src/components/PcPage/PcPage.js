@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-import {Button, Col, ListGroup, Row} from 'react-bootstrap';
+import {Button, Col, Row, ButtonGroup} from 'react-bootstrap';
 import firebase from 'firebase';
 import dmp from '../../firebase_requests/dmp';
+import RaceBar from '../RaceBar/RaceBar';
+import './PcPage.css';
 
 class PcPage extends Component {
   state =
   {
-    pcs: []
+    pcs: [],
+    character: {}
   }
   componentDidMount()
   {
@@ -24,9 +27,12 @@ class PcPage extends Component {
         dmp.getPcs(pc)
         .then((res) =>
         {
-          res.forEach(element =>
+          res.forEach(character =>
           {
-            pcArr.push(element);
+            if(character.is_active === true)
+            {
+              pcArr.push(character);
+            }
           });
           trigger();
         }).catch((err) =>
@@ -48,20 +54,28 @@ class PcPage extends Component {
         this.props.history.push(`/pc/${character.id}`);
       }
 
-      return ( <ListGroup.Item onClick={listItemClick} key={character.id}> {character.name} <span className="race">{character.race_name}</span></ListGroup.Item> );
+      const listItemHover = () =>
+      {
+        this.setState({character});
+      }
+
+      return ( <Button onClick={listItemClick} onMouseOver={listItemHover} key={character.id}> {character.name} <span className="race">{character.race_name}</span></Button> );
     });
 
     return (
       <div className="PcPage">
-        <h3>Players</h3>
         <Row>
-          <Col md={4}>
-            <ListGroup >
+          <Col md={4} className="pcBtnContainer">
+          <h3>Players</h3>
+            <ButtonGroup vertical>
               {pcListItem}
-            </ListGroup>
+            </ButtonGroup>
           </Col>
           <Col md={4}>
-            <Button href="/pc/add">Add a Character</Button>
+            <Button href="/pc/add" className="addButton">Add a Character</Button>
+          </Col>
+          <Col md={4}>
+            <RaceBar charProp={this.state.character}/>
           </Col>
         </Row>
       </div>
