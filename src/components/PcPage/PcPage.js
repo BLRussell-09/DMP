@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Col, ListGroup, Row} from 'react-bootstrap';
+import {Button, Col, ListGroup, Row, ButtonGroup} from 'react-bootstrap';
 import firebase from 'firebase';
 import dmp from '../../firebase_requests/dmp';
 import RaceBar from '../RaceBar/RaceBar';
@@ -55,7 +55,7 @@ class PcPage extends Component {
         this.setState({character});
       }
 
-      return ( <ListGroup.Item onClick={listItemClick} onMouseOver={listItemHover} key={character.id}> {character.name} <span className="race">{character.race_name}</span></ListGroup.Item> );
+      return ( <Button onClick={listItemClick} onMouseOver={listItemHover} key={character.id}> {character.name} <span className="race">{character.race_name}</span></Button> );
     });
 
     return (
@@ -63,9 +63,9 @@ class PcPage extends Component {
         <h3>Players</h3>
         <Row>
           <Col md={4}>
-            <ListGroup >
+            <ButtonGroup vertical>
               {pcListItem}
-            </ListGroup>
+            </ButtonGroup>
           </Col>
           <Col md={4}>
             <Button href="/pc/add">Add a Character</Button>
