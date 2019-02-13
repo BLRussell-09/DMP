@@ -36,6 +36,7 @@ class NpcPage extends Component
     var items = this.state.character.items;
     var compTrigger;
     var descTrigger;
+
     var descComponent = () =>
     {
       if(this.state.item)
@@ -88,12 +89,13 @@ class NpcPage extends Component
         </Row>
         <Row>
           <Col md={3}>
+            <h3>Bags</h3>
             {compTrigger}
           </Col>
           <Col md={3}>
             {descTrigger}
           </Col>
-          <Col md={{span: 3, offset: 6}}>
+          <Col md={3}>
             <RaceBar charProp={character}/>
           </Col>
         </Row>
