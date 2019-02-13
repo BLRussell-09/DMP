@@ -29,8 +29,16 @@ class NameBar extends Component
         var names = this.props.charProp;
       }
 
-    const popover = () =>{ return (
-      <Popover id="popover-basic" title={this.props.charProp.race_name + " " + this.props.charClass[0].class_name }>
+    const popover = () =>
+    {
+      function jsUcfirst(string)
+      {
+          return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+      var raceName = jsUcfirst(this.props.charProp.race_name);
+      var className = jsUcfirst(this.props.charClass[0].class_name);
+      return (
+      <Popover id="popover-basic" title={raceName + " " +  className}>
         {this.props.charProp.characteristics}
         <br />
         {this.props.charProp.description}
@@ -38,10 +46,12 @@ class NameBar extends Component
     )};
 
     const Name = () => {
+      const pop = popover()
       return (
-        <OverlayTrigger trigger="click" placement="top" overlay={popover}>
-        <Button variant="success">{this.props.charProp.name}</Button>
-      </OverlayTrigger>
+
+        <OverlayTrigger trigger="click" placement="right" overlay={pop}>
+          <Button variant="success">{this.props.charProp.name}</Button>
+        </OverlayTrigger>
       );
     };
 
