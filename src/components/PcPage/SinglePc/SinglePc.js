@@ -33,6 +33,15 @@ class SinglePc extends Component
     .catch();
   }
 
+  deleteCharacter = () =>
+  {
+    var id = this.props.match.params.id;
+    var pc = this.state.character[0];
+    pc.is_active = false;
+    this.props.history.push("/pc");
+    pcRequests.updatePc(pc, id);
+  }
+
   render()
   {
     var abilityScoresArr = [];
@@ -40,7 +49,6 @@ class SinglePc extends Component
     var weaponsProp = [];
     var itemsProp = [];
     var charProp = 0;
-    var characterP
 
     const nameBar = this.state.character.map((character) =>
     {
@@ -52,7 +60,7 @@ class SinglePc extends Component
       weaponsProp = character.weapons;
       itemsProp = character.items;
       charProp = character.id;
-      characterP = character
+      //characterP = character
       var classes = character.playerClasses;
       classes.forEach(c => {
           classList.push(c.class_name);
@@ -70,7 +78,7 @@ class SinglePc extends Component
         const Name = () => {
           return (
             <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-            <Button variant="success">{character.name}</Button>
+            <Button variant="success" >{character.name}</Button>
           </OverlayTrigger>
           );
         };
@@ -84,6 +92,7 @@ class SinglePc extends Component
           <Col md={2}><h5>Hit Points: {character.hit_points}</h5></Col>
           <Col md={2}><h5>Race: {character.race_name}</h5></Col>
           <Col md={2}><h5>Experience: {character.experience }</h5></Col>
+          <Col md={2}><Button variant="danger" onClick={this.deleteCharacter}>Delete Character</Button></Col>
         </Row>
 
       );

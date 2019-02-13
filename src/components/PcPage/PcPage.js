@@ -27,9 +27,12 @@ class PcPage extends Component {
         dmp.getPcs(pc)
         .then((res) =>
         {
-          res.forEach(element =>
+          res.forEach(character =>
           {
-            pcArr.push(element);
+            if(character.is_active === true)
+            {
+              pcArr.push(character);
+            }
           });
           trigger();
         }).catch((err) =>
