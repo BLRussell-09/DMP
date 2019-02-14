@@ -32,11 +32,25 @@ class SkillBar extends Component
     }
   }
 
+  componentDidMount()
+  {
+      this.doThing();
+  }
+
+    saveSkills = (skills) =>
+    {
+      var reload = this.props.reloadPc;
+      skills.owner_id = this.props.character;
+      skillRequests.updateSkills(skills);
+      reload();
+    }
+
   formFieldStringStateT = (skillName) =>
   {
     const tempSkills = {...this.state.skills};
     tempSkills[skillName] = true;
     this.setState({skills: tempSkills});
+    this.saveSkills(tempSkills);
   }
 
   formFieldStringStateF = (skillName) =>
@@ -44,6 +58,7 @@ class SkillBar extends Component
     const tempSkills = {...this.state.skills};
     tempSkills[skillName] = false;
     this.setState({skills: tempSkills});
+    this.saveSkills(tempSkills);
   }
 
   setAthSkills = (skillName) =>
@@ -127,19 +142,41 @@ class SkillBar extends Component
     this.athTrigger("persuasion");
   }
 
-  athTrigger = (skillName) =>
+  athTrigger = (e) =>
   {
 
-    if (this.state.skills[skillName] === true)
+    if (this.state.skills[e.target.textContent] === true)
     {
-      this.formFieldStringStateF(skillName);
+      this.formFieldStringStateF(e.target.textContent);
     }
     else
     {
-      this.formFieldStringStateT(skillName);
+      e.target.classList.add("red");
+      this.forceUpdate();
+      this.formFieldStringStateT(e.target.textContent);
     }
   }
 
+  doThing = () =>
+    {
+      setTimeout(() =>
+      {
+        if(this.props.skills.owner_id)
+        {
+          var pcSkills = this.props.skills;
+          this.setState({skills: pcSkills});
+        }
+      }, 1000)
+    }
+
+  colorCoder = () =>
+  {
+    if (this.state.skills.acrobatics === true)
+    {
+      var button = document.getElementById("acrobatics");
+      button.classList.add("red");
+    }
+  }
 
   render()
   {
@@ -147,6 +184,22 @@ class SkillBar extends Component
     var skillProps = this.props.skills;
 
     var skills = Object.keys(skillProps);
+
+    var skillsComp = skills.map((skill) =>
+    {
+      if (this.state.skills[skill])
+      {
+        return (
+        <ListGroup.Item action key={skill} onClick={((e) => {this.athTrigger(e)})}id={skill} className="red">{skill}</ListGroup.Item>
+      );
+      }
+      else {
+        return (
+          <ListGroup.Item action key={skill} onClick={((e) => {this.athTrigger(e)})} id={skill}>{skill}</ListGroup.Item>
+        )
+      }
+
+    })
 
     var acroClick = this.setAcrSkills;
     var aniClick = this.setAniHaniSkills;
@@ -163,14 +216,32 @@ class SkillBar extends Component
     var perFClick = this.setPerfSkills;
     var perSClick = this.setPerSSkills;
 
-    const saveSkills = () =>
-    {
-      const skills = this.state.skills;
-      var reload = this.props.reloadPc;
-      skills.owner_id = this.props.character;
-      skillRequests.updateSkills(skills);
-      reload();
-    }
+    // const saveSkills = () =>
+    // {
+    //   const skills = this.state.skills;
+    //   var reload = this.props.reloadPc;
+    //   skills.owner_id = this.props.character;
+    //   skillRequests.updateSkills(skills);
+    //   reload();
+    // }
+
+    // const setSkills = () =>
+    // {
+    //   if (this.props.skills.owner_id )
+    //   {
+    //     this.doThing();
+    //   }
+    // }
+
+    // var skillSetter = setSkills();
+    // const colorCode = () =>
+    // {
+    //   if (this.state.acrobatics)
+    //   {
+
+    //   }
+    // }
+
 
     return (
       <div id="SkillBar" style={{padding: 1 +  'em'}}>
@@ -180,128 +251,33 @@ class SkillBar extends Component
               <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                 Skills Proficiencies
               </Dropdown.Toggle>
-              <DropdownMenu>
+              <DropdownMenu className="skillDrop">
               <ListGroup.Item>
                   <InputGroup className="mb-3">
                     <InputGroup.Prepend>
-                      <Button onClick={saveSkills}>Save</Button>
+                      <Button >Save</Button>
                     </InputGroup.Prepend>
                   </InputGroup>
                 </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary" onClick={acroClick}>{skills[0]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary" onClick={aniClick}>{skills[1]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary" onClick={arcClick}>{skills[2]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary" onClick={athClick}>{skills[3]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                  <InputGroup.Prepend>
-                    <Button variant="outline-secondary" onClick={decClick}>{skills[4]}</Button>
-
-                  </InputGroup.Prepend>
-                </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary" onClick={hisClick}>{skills[5]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary" onClick={insClick}>{skills[6]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary" onClick={intClick}>{skills[7]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary" onClick={invClick}>{skills[8]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary" onClick={medClick}>{skills[9]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                  <InputGroup.Prepend>
-                    <Button variant="outline-secondary" onClick={natClick}>{skills[10]}</Button>
-
-                  </InputGroup.Prepend>
-                </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary"onClick={perClick}>{skills[11]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary" onClick={perFClick}>{skills[12]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <Button variant="outline-secondary"onClick={perSClick}>{skills[13]}</Button>
-
-                    </InputGroup.Prepend>
-                  </InputGroup>
-                </ListGroup.Item>
+                <ListGroup.Item action onClick={acroClick} id="acrobatics">{skills[0]}</ListGroup.Item>
+                <ListGroup.Item action onClick={aniClick}>{skills[1]}</ListGroup.Item>
+                <ListGroup.Item action onClick={arcClick}>{skills[2]}</ListGroup.Item>
+                <ListGroup.Item action onClick={athClick}>{skills[3]}</ListGroup.Item>
+                <ListGroup.Item action onClick={decClick}>{skills[4]}</ListGroup.Item>
+                <ListGroup.Item action onClick={hisClick}>{skills[5]}</ListGroup.Item>
+                <ListGroup.Item action onClick={insClick}>{skills[6]}</ListGroup.Item>
+                <ListGroup.Item action onClick={intClick}>{skills[7]}</ListGroup.Item>
+                <ListGroup.Item action onClick={invClick}>{skills[8]}</ListGroup.Item>
+                <ListGroup.Item action onClick={medClick}>{skills[9]}</ListGroup.Item>
+                <ListGroup.Item action onClick={natClick}>{skills[10]}</ListGroup.Item>
+                <ListGroup.Item action onClick={perClick}>{skills[11]}</ListGroup.Item>
+                <ListGroup.Item action onClick={perFClick}>{skills[12]}</ListGroup.Item>
+                <ListGroup.Item action onClick={perSClick}>{skills[13]}</ListGroup.Item>
               </DropdownMenu>
             </Dropdown>
+            <ListGroup>
+              {skillsComp}
+            </ListGroup>
           </Col>
         </Row>
       </div>

@@ -18,6 +18,12 @@ class AddItems extends Component
         quantity: 0,
         description: '',
         owner_id: this.props.character
+      },
+      baseItem: {
+        name: '',
+        quantity: 0,
+        description: '',
+        owner_id: this.props.character
       }
     };
   }
@@ -67,15 +73,20 @@ class AddItems extends Component
     var addClick = () =>
     {
       const tempItem = {...this.state.item};
+      const tempBase = {...this.state.baseItem};
       tempItem.owner_id = this.props.character;
       this.setState({item: tempItem});
-      bagRequests.addItem(this.state.item);
-      this.props.reload();
-      this.handleClose();
+      bagRequests.addItem(this.state.item)
+      .then(() =>
+      {
+        this.setState({item: tempBase});
+        this.props.reload();
+        this.handleClose();
+      });
+      ;
     }
     return (
       <div>
-        <Row>
           <Button variant="primary" onClick={this.handleShow}>
             Add An Item
           </Button>
@@ -88,7 +99,7 @@ class AddItems extends Component
             <Form>
                 <Form.Group controlId="exampleForm.ControlInput1">
                   <Form.Label>Name</Form.Label>
-                  <Form.Control type="email" placeholder="name@example.com" onChange={this.nameChange}/>
+                  <Form.Control type="email" placeholder="Flame Stone..." onChange={this.nameChange}/>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                   <Form.Label>Quantity</Form.Label>
@@ -109,7 +120,6 @@ class AddItems extends Component
               </Button>
             </Modal.Footer>
           </Modal>
-        </Row>
       </div>
     );
   }

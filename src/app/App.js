@@ -40,7 +40,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Navibar authed={this.state.authed} logout={this.logout}/>
-            <Container>
+            <Container fluid>
               <div>
                 <Switch>
                   <Route component={PcRoutes}path='/pc'/>

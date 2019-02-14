@@ -81,7 +81,6 @@ class AddWeapon extends Component
     }
     return (
       <div>
-        <Row>
           <Button variant="primary" onClick={this.handleShow}>
             Add A Weapon
           </Button>
@@ -94,7 +93,7 @@ class AddWeapon extends Component
             <Form>
                 <Form.Group controlId="exampleForm.ControlInput1">
                   <Form.Label>Name</Form.Label>
-                  <Form.Control type="email" placeholder="name@example.com" onChange={this.nameChange}/>
+                  <Form.Control type="email" placeholder="The Wabbajack..." onChange={this.nameChange}/>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                   <Form.Label>Dice Count</Form.Label>
@@ -126,7 +125,6 @@ class AddWeapon extends Component
               </Button>
             </Modal.Footer>
           </Modal>
-        </Row>
       </div>
     );
   }

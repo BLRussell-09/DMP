@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Tab, Row, Col, ListGroup, Button} from 'react-bootstrap';
+import {Tab, Row, Col, ListGroup, Button, Card} from 'react-bootstrap';
 import bagRequests from '../requests/bagRequests';
 import './weaponsBay.css';
 import WeaponDescription from './WeaponDescription/WeaponDescription';
@@ -10,7 +10,9 @@ class WeaponsBay extends Component
 {
   state =
   {
-    weapon: {},
+    weapon: {
+      description: ""
+    },
     item: {}
   }
   render ()
@@ -22,8 +24,6 @@ class WeaponsBay extends Component
     var charProp = this.props.character;
     const weapMaker = weaponsList.map((weapon) =>
     {
-      var id = weapon.id
-
       const weaponClick = () =>
       {
         var tempWeapon = {...this.state.weapon};
@@ -33,11 +33,6 @@ class WeaponsBay extends Component
         card.removeAttribute("class")
       }
 
-      const xClick = () =>
-      {
-        bagRequests.deleteWeapon(id);
-        this.props.reload();
-      }
       return (
         <ListGroup.Item action key={weapon.id} onClick={weaponClick}>
           {weapon.name}
@@ -47,14 +42,12 @@ class WeaponsBay extends Component
 
     const itemMaker = itemsList.map((item) =>
     {
-      var id = item.id;
-
       const itemClick = () =>
       {
         var tempItem = {...this.state.item};
         tempItem = item;
-        this.setState({item: tempItem});
-        var card = document.getElementById("itemCard");
+        this.setState({weapon: tempItem});
+        var card = document.getElementById("weapCard");
         card.removeAttribute("class")
       }
       return (
@@ -68,26 +61,31 @@ class WeaponsBay extends Component
     return (
       <div className="weaponsBay">
           <Row>
+            <Col md={6} className="itemHolder">
+                <ListGroup variant="flush" className="itemList">
+                  {itemMaker}
+                </ListGroup>
+              </Col>
             <Col md={6}>
-            <h3>Weapons</h3>
-            <ListGroup variant="flush">
+            <ListGroup variant="flush" className="itemList">
               {weapMaker}
             </ListGroup>
             </Col>
             <Col md={6}>
               <WeaponDescription weapon={descriptionProp} reload={this.props.reload}/>
             </Col>
-          </Row>
-          <Row>
-            <AddItems character={charProp} reload={this.props.reload}/>
-          </Row>
-          <Row>
             <Col md={6}>
-              <h3>Items</h3>
-              <ListGroup variant="flush">
-                {itemMaker}
-              </ListGroup>
+              <Card className="d-none" id="dmgCard">
+                <Card.Body>
+                <Card.Title id="weaponTitle" >Damage</Card.Title>
+                <Card.Text id="damageText"></Card.Text>
+                  </Card.Body>
+              </Card>
             </Col>
+          </Row>
+          <Row>
+          </Row>
+          <Row>
             <Col md={6}>
               <ItemDescription item={iDescProp} reload={this.props.reload}/>
             </Col>

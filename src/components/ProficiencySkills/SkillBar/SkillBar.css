@@ -1,2 +1,9 @@
-.SkillBar {
-  padding-top: 3em !important; }
+.skillDrop {
+  height: 30em;
+  overflow: auto;
+  padding: 8px;
+  top: 330px !important; }
+
+.red {
+  background-color: firebrick;
+  color: white; }

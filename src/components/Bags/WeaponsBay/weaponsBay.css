@@ -1,3 +1,13 @@
 #weaponsBay {
   height: 15em;
   overflow: scroll; }
+
+.itemHolder {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  max-height: 10em;
+  overflow: auto; }
+
+#dmgCard {
+  font-weight: bold;
+  font-size: 100px; }

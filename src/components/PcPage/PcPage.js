@@ -59,17 +59,20 @@ class PcPage extends Component {
         this.setState({character});
       }
 
-      return ( <Button onClick={listItemClick} onMouseOver={listItemHover} key={character.id}> {character.name} <span className="race">{character.race_name}</span></Button> );
+      return ( <Button variant="secondary" onClick={listItemClick} onMouseOver={listItemHover} key={character.id}> {character.name} <span className="race">{character.race_name}</span></Button> );
     });
 
     return (
       <div className="PcPage">
         <Row>
-          <Col md={4} className="pcBtnContainer">
+          <Col md={3} >
           <h3>Players</h3>
-            <ButtonGroup vertical>
-              {pcListItem}
-            </ButtonGroup>
+            <div className="pcBtnContainer">
+              <ButtonGroup vertical className="pcSelector" >
+                {pcListItem}
+              </ButtonGroup>
+            </div>
+
           </Col>
           <Col md={4}>
             <Button href="/pc/add" className="addButton">Add a Character</Button>

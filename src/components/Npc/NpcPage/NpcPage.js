@@ -66,7 +66,7 @@ class NpcPage extends Component
 
         return (
           <div>
-            <ListGroup.Item action key={item.id} onClick={itemClick}>
+            <ListGroup.Item action key={item.id} onClick={itemClick} >
               {item.name}
             </ListGroup.Item>
           </div>
@@ -84,13 +84,13 @@ class NpcPage extends Component
     return (
       <div>
         <NameBar charProp={character} charClass={charClass} />
-        <Row>
-          <AbilityBarNpc abilities={abilityScores}/>
-        </Row>
+        <AbilityBarNpc abilities={abilityScores}/>
         <Row>
           <Col md={3}>
             <h3>Bags</h3>
-            {compTrigger}
+            <ListGroup variant="flush">
+              {compTrigger}
+            </ListGroup>
           </Col>
           <Col md={3}>
             {descTrigger}
