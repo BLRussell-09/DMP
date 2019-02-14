@@ -75,7 +75,7 @@ class PcPage extends Component {
 
           </Col>
           <Col md={4}>
-            <Button href="/pc/add" className="addButton">Add a Character</Button>
+            <Button href="/pc/add" className="addButton" variant="danger">Add a Character</Button>
           </Col>
           <Col md={4}>
             <RaceBar charProp={this.state.character}/>

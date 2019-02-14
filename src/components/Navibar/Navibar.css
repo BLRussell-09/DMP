@@ -1,2 +1,3 @@
-.Navibar {
-  background-color: rebeccapurple; }
+#alertBox {
+  position: absolute;
+  z-index: 99 !important; }

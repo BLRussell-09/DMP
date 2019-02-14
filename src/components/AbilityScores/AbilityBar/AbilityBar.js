@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Card, Col, CardGroup} from 'react-bootstrap'
+import {Row, Card, CardGroup} from 'react-bootstrap'
 import './AbilityBar.css'
 
 class AbilityBar extends Component

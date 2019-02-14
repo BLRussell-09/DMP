@@ -8,5 +8,4 @@
 .pcBtnContainer {
   height: 32em;
   overflow: auto;
-  background-color: whitesmoke;
-  padding: 1em; }
+  border-radius: 10%; }

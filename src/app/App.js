@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {Container} from 'react-bootstrap';
+import {Container, Alert, Row, Col} from 'react-bootstrap';
 import Navibar from '../components/Navibar/Navibar';
 import firebase from 'firebase';
 import firebaseApp from '../firebase_requests/connection';

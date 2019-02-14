@@ -194,7 +194,7 @@ class AddPc extends Component {
           </Row>
           <Row>
             <Col md={{span: 4, offset: 3}}>
-              <Button onClick={this.submitPc}>Add a Character</Button>
+              <Button onClick={this.submitPc} variant="danger">Save</Button>
             </Col>
           </Row>
       </div>

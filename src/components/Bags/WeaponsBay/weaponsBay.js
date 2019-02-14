@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import {Tab, Row, Col, ListGroup, Button, Card} from 'react-bootstrap';
-import bagRequests from '../requests/bagRequests';
+import {Row, Col, ListGroup, Card} from 'react-bootstrap';
 import './weaponsBay.css';
 import WeaponDescription from './WeaponDescription/WeaponDescription';
-import AddItems from '../AddItems/AddItems';
 import ItemDescription from '../ItemDescription/ItemDescription';
 
 class WeaponsBay extends Component
@@ -21,7 +19,6 @@ class WeaponsBay extends Component
     var itemsList = this.props.items;
     var descriptionProp = this.state.weapon;
     var iDescProp = this.state.item;
-    var charProp = this.props.character;
     const weapMaker = weaponsList.map((weapon) =>
     {
       const weaponClick = () =>
@@ -66,7 +63,7 @@ class WeaponsBay extends Component
                   {itemMaker}
                 </ListGroup>
               </Col>
-            <Col md={6}>
+            <Col md={6} className="weapHolder">
             <ListGroup variant="flush" className="itemList">
               {weapMaker}
             </ListGroup>

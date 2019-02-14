@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react';
-import { Modal, Button, Form, Row} from 'react-bootstrap';
+import { Modal, Button, Form} from 'react-bootstrap';
 import bagRequests from '../requests/bagRequests';
 
 class AddItems extends Component
@@ -83,7 +83,6 @@ class AddItems extends Component
         this.props.reload();
         this.handleClose();
       });
-      ;
     }
     return (
       <div>

@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import npcRequests from '../NpcRequests/NpcRequests';
-import {Row, Button, OverlayTrigger, Col, Popover} from 'react-bootstrap';
+import {Row, Col,} from 'react-bootstrap';
 import RaceBar from '../../RaceBar/RaceBar';
 import NameBar from '../../NameBar/NameBar';
-import AbilityBar from '../../AbilityScores/AbilityBar/AbilityBar';
 import AbilityBarNpc from '../../AbilityScores/AbilityBarNpc/AbilityBarNpc';
 import {ListGroup} from 'react-bootstrap';
-import ItemDescription from '../../Bags/ItemDescription/ItemDescription';
+import NpcItemDescription from '../../Bags/ItemDescription/NpcItemDescription';
 class NpcPage extends Component
 {
   state = {
-    character: []
+    character: [],
+    item:{}
   }
 
   componentDidMount()
@@ -32,7 +32,6 @@ class NpcPage extends Component
     var abilityScores = this.state.character.abilityScores;
     var abScoreArr = [];
     abScoreArr.push(abilityScores);
-    var weapons = this.state.character.weapons;
     var items = this.state.character.items;
     var compTrigger;
     var descTrigger;
@@ -42,7 +41,7 @@ class NpcPage extends Component
       if(this.state.item)
       {
         return (
-          <ItemDescription item={this.state.item}/>
+          <NpcItemDescription item={this.state.item}/>
           );
       }
     }
@@ -50,7 +49,6 @@ class NpcPage extends Component
     var itemComponent = () =>
     {
       return items.map((item)  => {
-        console.log(item)
         const itemClick = () =>
       {
         var tempItem = {...this.state.item};
@@ -60,13 +58,14 @@ class NpcPage extends Component
         if(this.state.item)
         {
           card.removeAttribute("class");
+          console.log('yolo');
         }
 
       }
 
         return (
-          <div>
-            <ListGroup.Item action key={item.id} onClick={itemClick} >
+          <div key={item.id}>
+            <ListGroup.Item action onClick={itemClick} >
               {item.name}
             </ListGroup.Item>
           </div>

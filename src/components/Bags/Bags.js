@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react';
-import { Col , Button, ButtonGroup, Row} from 'react-bootstrap';
+import { Col , Row} from 'react-bootstrap';
 import AddWeapon from './AddWeapon/AddWeapon';
 import AddItems from './AddItems/AddItems';
 import WeaponsBay from './WeaponsBay/weaponsBay';

@@ -1,9 +1,12 @@
-.skillDrop {
-  height: 30em;
+.skillList {
+  height: 25em;
   overflow: auto;
-  padding: 8px;
-  top: 330px !important; }
+  border-radius: 10%;
+  direction: rtl; }
 
 .red {
   background-color: firebrick;
   color: white; }
+
+.red:hover {
+  background-color: tomato; }

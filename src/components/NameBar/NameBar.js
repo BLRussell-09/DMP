@@ -4,30 +4,13 @@ import './NameBar.css';
 
 class NameBar extends Component
 {
-  // state = {}
-  // componentDidMount()
-  // {
-  //   if (this.props.charClass)
-  //   {
-  //     var charState = this.props.charProp;
-  //     this.setState({})
-  //   }
 
-
-  // }
   render()
   {
-    // var classList = [];
-    // var classes = this.state.character.playerClasses;
-    //   classes.forEach(c => {
-    //       classList.push(c.class_name);
-    //   });
-    //   var characterClasses = classList.toString()
 
     if (this.props.charProp.length > 0 )
       {
         console.log(this.props.charProp);
-        var names = this.props.charProp;
       }
 
     const popover = () =>

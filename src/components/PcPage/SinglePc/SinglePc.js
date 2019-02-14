@@ -3,7 +3,6 @@ import pcRequests from '../requests/pcRequests';
 import {Col, Row, OverlayTrigger, Button, Popover, ButtonGroup} from 'react-bootstrap';
 import AbilityBar from '../../AbilityScores/AbilityBar/AbilityBar';
 import SkillBar from '../../ProficiencySkills/SkillBar/SkillBar';
-import RaceBar from '../../RaceBar/RaceBar';
 import Bags from '../../Bags/Bags';
 import './SinglePc.css'
 
@@ -39,8 +38,13 @@ class SinglePc extends Component
     var id = this.props.match.params.id;
     var pc = this.state.character[0];
     pc.is_active = false;
-    this.props.history.push("/pc");
-    pcRequests.updatePc(pc, id);
+    pcRequests.updatePc(pc, id)
+    .then(() =>
+    {
+      this.forceUpdate();
+      this.props.history.push("/pc");
+    });
+    this.forceUpdate();
   }
 
   updateCharacter = () =>
@@ -130,9 +134,9 @@ class SinglePc extends Component
           <Col md={1}><h5>Exp: {character.experience }</h5></Col>
           <Col md={4}>
             <ButtonGroup>
-              <Button variant="warning" onClick={this.levelUpCharacter} className="savePcBtn">Level Up</Button>
-              <Button variant="success" onClick={this.updateCharacter} className="savePcBtn">Save</Button>
-              <Button variant="danger" onClick={this.deleteCharacter} className="deletePcBtn">Delete Character</Button>
+              <Button variant="secondary" onClick={this.levelUpCharacter} className="savePcBtn">Level Up</Button>
+              <Button variant="secondary" onClick={this.updateCharacter} className="savePcBtn">Save</Button>
+              <Button variant="secondary" onClick={this.deleteCharacter} className="deletePcBtn">Delete Character</Button>
             </ButtonGroup>
           </Col>
         </Row>
