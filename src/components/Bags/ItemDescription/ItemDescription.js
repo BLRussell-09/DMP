@@ -6,7 +6,6 @@ class ItemDescription extends Component
 {
   render()
   {
-    var d = "d"
     const xClick = () =>
       {
         var id = this.props.item.id

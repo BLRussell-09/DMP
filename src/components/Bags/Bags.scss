@@ -1,5 +1,8 @@
-#bags {
-  height: 6em;
-  border: 1px,solid;
+.bags {
+  background-color: whitesmoke;
+  margin-bottom: 2em;
+  right: 10px;
   overflow: auto;
+  max-height: 30em;
+  border-radius: 10%;
 }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Row, Card, Col} from 'react-bootstrap'
+import {Row, Card, CardGroup} from 'react-bootstrap'
+import './AbilityBar.css'
 
 class AbilityBar extends Component
 {
@@ -18,9 +19,10 @@ class AbilityBar extends Component
       var wisMod = abilityMod(abilityScores.wisdom);
       var chaMod = abilityMod(abilityScores.charisma);
       return (
-        <Row>
-          <Col md={2}>
-            <Card bg="primary" text="white" style={{ width: '9rem' }}>
+        <Row className="absCard justify-content-center">
+          <CardGroup>
+
+            <Card text="black" style={{ width: '9rem', height: '7rem'}} className="absCardInner">
               <Card.Header>Strength</Card.Header>
               <Card.Body>
                 <Card.Title>{strMod}</Card.Title>
@@ -29,9 +31,9 @@ class AbilityBar extends Component
                 </Card.Text>
               </Card.Body>
             </Card>
-          </Col>
-          <Col md={2}>
-            <Card bg="primary" text="white" style={{ width: '9rem' }}>
+
+
+            <Card text="black" style={{ width: '9rem', height: '7rem'}} className="absCardInner">
               <Card.Header>Dexterity</Card.Header>
               <Card.Body>
                 <Card.Title>{dexMod}</Card.Title>
@@ -40,9 +42,9 @@ class AbilityBar extends Component
                 </Card.Text>
               </Card.Body>
             </Card>
-          </Col>
-          <Col md={2}>
-            <Card bg="primary" text="white" style={{ width: '9rem' }}>
+
+
+            <Card text="black" style={{ width: '9rem', height: '7rem'}} className="absCardInner">
               <Card.Header>Constitution</Card.Header>
               <Card.Body>
                 <Card.Title>{conMod}</Card.Title>
@@ -51,9 +53,9 @@ class AbilityBar extends Component
                 </Card.Text>
               </Card.Body>
             </Card>
-          </Col>
-          <Col md={2}>
-            <Card bg="primary" text="white" style={{ width: '9rem' }}>
+
+
+            <Card text="black" style={{ width: '9rem', height: '7rem'}} className="absCardInner">
               <Card.Header>Intelligence</Card.Header>
               <Card.Body>
                 <Card.Title>{intMod}</Card.Title>
@@ -62,9 +64,9 @@ class AbilityBar extends Component
                 </Card.Text>
               </Card.Body>
             </Card>
-          </Col>
-          <Col md={2}>
-            <Card bg="primary" text="white" style={{ width: '9rem' }}>
+
+
+            <Card text="black" style={{ width: '9rem', height: '7rem'}} className="absCardInner">
               <Card.Header>Wisdom</Card.Header>
               <Card.Body>
                 <Card.Title>{wisMod}</Card.Title>
@@ -73,9 +75,9 @@ class AbilityBar extends Component
                 </Card.Text>
               </Card.Body>
             </Card>
-          </Col>
-          <Col md={2}>
-            <Card bg="primary" text="white" style={{ width: '9rem' }}>
+
+
+            <Card text="black" style={{ width: '9rem', height: '7rem'}} className="absCardInner">
               <Card.Header>Charisma</Card.Header>
               <Card.Body>
                 <Card.Title>{chaMod}</Card.Title>
@@ -84,7 +86,8 @@ class AbilityBar extends Component
                 </Card.Text>
               </Card.Body>
             </Card>
-          </Col>
+
+          </CardGroup>
         </Row>
       );
   }

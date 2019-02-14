@@ -24,7 +24,7 @@ class AddPc extends Component {
       type: 'pc',
       playerClasses: [
         {
-          class_name: '',
+          class_name: 'Barbarian',
           class_level: 0
         }
       ],
@@ -85,9 +85,31 @@ class AddPc extends Component {
     this.formFieldPcClass(e)
   }
 
+  descChange = (e) =>
+  {
+    this.formFieldStringState('description', e)
+  };
+
+  findClass = () =>
+  {
+    var pc = this.state.character;
+    var classPick = this.state.classes.find(x => x.name === pc.playerClasses[0].class_name);
+    return classPick;
+  }
+
+   getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max)) + 1;
+  }
+
   submitPc = () =>
   {
     var pc = this.state.character;
+    var pcClass = this.findClass();
+
+    var hitDie = pcClass.hit_die;
+    var hp = this.getRandomInt(hitDie);
+    pc.hit_points = hp + pc.abilityScores.constitution;
+
     pcRequests.addPc(pc)
     .then(() =>
     {
@@ -163,10 +185,16 @@ class AddPc extends Component {
             <Col md={4}>
             <AbilityScoreGen formField={this.formFieldPcAs} numField={this.formFieldPcAsNum}></AbilityScoreGen>
             </Col>
+            <Col md={4}>
+              <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Description</Form.Label>
+                <Form.Control onChange={this.descChange} as="textarea" rows="3" placeholder="Who are you..." />
+              </Form.Group>
+            </Col>
           </Row>
           <Row>
             <Col md={{span: 4, offset: 3}}>
-              <Button onClick={this.submitPc}>Add a Character</Button>
+              <Button onClick={this.submitPc} variant="danger">Save</Button>
             </Col>
           </Row>
       </div>

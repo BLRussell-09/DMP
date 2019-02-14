@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react';
-import { Modal, Button, Form, Row} from 'react-bootstrap';
+import { Modal, Button, Form} from 'react-bootstrap';
 import bagRequests from '../requests/bagRequests';
 
 class AddWeapon extends Component
@@ -18,6 +18,12 @@ class AddWeapon extends Component
         dice_count: 0,
         damage_dice: 0,
         description: '',
+        owner_id: this.props.character
+      },
+      baseWeapon: {
+        name: '',
+        dice_count: 0,
+        damage_dice: 0,
         owner_id: this.props.character
       }
     };
@@ -73,15 +79,19 @@ class AddWeapon extends Component
     var addClick = () =>
     {
       const tempWeapon = {...this.state.weapon};
+      const tempBase = {...this.state.baseWeapon};
       tempWeapon.owner_id = this.props.character;
       this.setState({weapon: tempWeapon});
-      bagRequests.addWeapon(this.state.weapon);
-      this.props.reload();
-      this.handleClose();
+      bagRequests.addWeapon(this.state.weapon)
+      .then(() =>
+      {
+        this.setState({weapon: tempBase});
+        this.props.reload();
+        this.handleClose();
+      });
     }
     return (
       <div>
-        <Row>
           <Button variant="primary" onClick={this.handleShow}>
             Add A Weapon
           </Button>
@@ -94,7 +104,7 @@ class AddWeapon extends Component
             <Form>
                 <Form.Group controlId="exampleForm.ControlInput1">
                   <Form.Label>Name</Form.Label>
-                  <Form.Control type="email" placeholder="name@example.com" onChange={this.nameChange}/>
+                  <Form.Control type="email" placeholder="The Wabbajack..." onChange={this.nameChange}/>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                   <Form.Label>Dice Count</Form.Label>
@@ -126,7 +136,6 @@ class AddWeapon extends Component
               </Button>
             </Modal.Footer>
           </Modal>
-        </Row>
       </div>
     );
   }

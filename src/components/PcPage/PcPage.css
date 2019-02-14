@@ -7,4 +7,5 @@
 
 .pcBtnContainer {
   height: 32em;
-  overflow: auto; }
+  overflow: auto;
+  border-radius: 10%; }

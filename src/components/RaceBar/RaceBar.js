@@ -11,7 +11,8 @@ class RaceBar extends Component
   {
     const img = () =>
     {
-      if (this.props.charProp.race_name === "dragonborn"){
+      if (this.props.charProp.race_name === "dragonborn" || this.props.charProp.race_name === "Dragonborn")
+      {
           return (
           <Image src="https://media-waterdeep.cursecdn.com/avatars/thumbnails/6/340/420/618/636272677995471928.png" fluid />
         );

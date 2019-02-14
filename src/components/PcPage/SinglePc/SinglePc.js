@@ -1,10 +1,10 @@
 import React, {Component}from 'react';
 import pcRequests from '../requests/pcRequests';
-import {Col, Row, OverlayTrigger, Button, Popover} from 'react-bootstrap';
+import {Col, Row, OverlayTrigger, Button, Popover, ButtonGroup} from 'react-bootstrap';
 import AbilityBar from '../../AbilityScores/AbilityBar/AbilityBar';
 import SkillBar from '../../ProficiencySkills/SkillBar/SkillBar';
-import RaceBar from '../../RaceBar/RaceBar';
 import Bags from '../../Bags/Bags';
+import './SinglePc.css'
 
 class SinglePc extends Component
 {
@@ -38,8 +38,48 @@ class SinglePc extends Component
     var id = this.props.match.params.id;
     var pc = this.state.character[0];
     pc.is_active = false;
-    this.props.history.push("/pc");
+    pcRequests.updatePc(pc, id)
+    .then(() =>
+    {
+      this.forceUpdate();
+      this.props.history.push("/pc");
+    });
+    this.forceUpdate();
+  }
+
+  updateCharacter = () =>
+  {
+    var id = this.props.match.params.id;
+    var pc = this.state.character[0];
     pcRequests.updatePc(pc, id);
+    this.forceUpdate();
+    this.getCharacter();
+  }
+
+    getRandomInt = (max) =>
+    {
+      return Math.floor(Math.random() * Math.floor(max)) + 1;
+    }
+
+   abilityMod = (num) =>
+    {
+        return Math.floor((num - 10)/2);
+    };
+
+  levelUpCharacter = () =>
+  {
+    var id = this.props.match.params.id;
+    var pc = this.state.character[0];
+    var classDie = pc.classes[0].hit_die;
+    var conMod = this.abilityMod(pc.abilityScores.constitution);
+    var newHp = this.getRandomInt(classDie) + conMod;
+    var classLevel = pc.playerClasses[0].class_level
+    var newClassLevel = classLevel + 1;
+    pc.hit_points = pc.hit_points + newHp;
+    pc.playerClasses[0].class_level = newClassLevel;
+    pc.level = pc.level + 1;
+    pcRequests.updatePc(pc, id);
+    this.getCharacter();
   }
 
   render()
@@ -69,16 +109,16 @@ class SinglePc extends Component
 
       const popover = (
         <Popover id="popover-basic" title={character.race_name + " "+  characterClasses}>
-          {character.charateristics}
-          <br />
           {character.description}
+          <br />
+          {character.characteristics}
         </Popover>
       );
 
         const Name = () => {
           return (
             <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-            <Button variant="success" >{character.name}</Button>
+            <Button className="nameBtn">{character.name}</Button>
           </OverlayTrigger>
           );
         };
@@ -86,13 +126,19 @@ class SinglePc extends Component
       var nameBar = Name();
 
       return (
-        <Row key={character.id}>
+        <Row key={character.id} className="namebar">
           <Col md={1}><h3>Level: {character.level}</h3></Col>
           <Col md={3}><h3>{nameBar}</h3></Col>
-          <Col md={2}><h5>Hit Points: {character.hit_points}</h5></Col>
-          <Col md={2}><h5>Race: {character.race_name}</h5></Col>
-          <Col md={2}><h5>Experience: {character.experience }</h5></Col>
-          <Col md={2}><Button variant="danger" onClick={this.deleteCharacter}>Delete Character</Button></Col>
+          <Col md={1}><h5>HP: {character.hit_points}</h5></Col>
+          <Col md={2}><h5>Proficiency Bonus: {character.proficiency_score}</h5></Col>
+          <Col md={1}><h5>Exp: {character.experience }</h5></Col>
+          <Col md={4}>
+            <ButtonGroup>
+              <Button variant="secondary" onClick={this.levelUpCharacter} className="savePcBtn">Level Up</Button>
+              <Button variant="secondary" onClick={this.updateCharacter} className="savePcBtn">Save</Button>
+              <Button variant="secondary" onClick={this.deleteCharacter} className="deletePcBtn">Delete Character</Button>
+            </ButtonGroup>
+          </Col>
         </Row>
 
       );

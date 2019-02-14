@@ -1,0 +1,11 @@
+.absCard {
+  padding-top: 10px;
+  padding-bottom: 3rem;
+  min-height: 10rem;
+  max-height: 10rem; }
+
+.absCardInner {
+  overflow: hidden; }
+
+.absCardInner:hover {
+  height: 9rem !important; }

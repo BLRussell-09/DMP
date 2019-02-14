@@ -1,13 +1,14 @@
-#race {
+.race {
   text-align: right;
   padding: 1em;
 }
 
-#addButton {
+.addButton {
   margin-top: 3em;
 }
 
-#pcBtnContainer {
-  height : 10em;
-  overflow: scroll;
+.pcBtnContainer {
+  height : 32em;
+  overflow: auto;
+  border-radius: 10%;
 }
