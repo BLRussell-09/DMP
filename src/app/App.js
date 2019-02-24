@@ -46,7 +46,7 @@ class App extends Component {
                 <Switch>
                   <Route component={PcRoutes}path='/pc'/>
                   <Route component={NpcRoutes} path='/' />
-                  <Route component={LoginRoutes} path='/login' />
+                  <Route component={LoginRoutes} path='/loginMe' />
                 </Switch>
               </div>
             </Container>

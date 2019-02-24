@@ -4,7 +4,7 @@ import Login from './Login';
 
 const LoginRoutes = () => (
   <Switch>
-    <Route exact path="/login" component={Login}/>
+    <Route exact path="/loginMe" component={Login}/>
   </Switch>
 )
 

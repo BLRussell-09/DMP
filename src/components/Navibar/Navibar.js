@@ -35,7 +35,7 @@ class Navibar extends Component {
                       <LootModal/>
                     </Nav>
                     <Nav>
-                      <Nav.Link href="/login" onClick={logoutUser}>Logout</Nav.Link>
+                      <Nav.Link href="/loginMe" onClick={logoutUser}>Logout</Nav.Link>
                     </Nav>
                 </Navbar>
                 ): (
