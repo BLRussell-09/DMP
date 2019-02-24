@@ -36,7 +36,7 @@ class Navibar extends Component {
                 ): (
                   <div>
                     <Navbar bg="dark" variant="dark">
-                      <Navbar.Brand href="/">DMP</Navbar.Brand>
+                      <Navbar.Brand href="/">DMB</Navbar.Brand>
                       <Nav className="mr-auto"></Nav>
                       <Nav>
                         <Nav.Link href="/login">Login</Nav.Link>
