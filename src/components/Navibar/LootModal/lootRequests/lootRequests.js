@@ -4,7 +4,7 @@ const getRandLoot = () =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.get(`https://localhost:44312/api/loot`)
+    axios.get(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/loot`)
     .then((res) =>
     {
       resolve(res.data);

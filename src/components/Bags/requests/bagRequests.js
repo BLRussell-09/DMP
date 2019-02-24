@@ -4,7 +4,7 @@ const addWeapon = (weapon) =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.post(`https://localhost:44312/api/weapons/add`, weapon)
+    axios.post(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/weapons/add`, weapon)
     .then((res) =>
     {
       resolve(res);
@@ -19,7 +19,7 @@ const addItem = (item) =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.post(`https://localhost:44312/api/item/add`, item)
+    axios.post(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/item/add`, item)
     .then((res) =>
     {
       resolve(res);
@@ -35,7 +35,7 @@ const deleteWeapon = (id) =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.delete(`https://localhost:44312/api/weapons/${id}`)
+    axios.delete(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/weapons/${id}`)
     .then((res) =>
     {
       resolve(res);
@@ -51,7 +51,7 @@ const deleteItem = (id) =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.delete(`https://localhost:44312/api/item/${id}`)
+    axios.delete(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/item/${id}`)
     .then((res) =>
     {
       resolve(res);

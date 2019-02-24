@@ -8,6 +8,7 @@ import auth from '../firebase_requests/auth';
 import './App.css';
 import PcRoutes from '../components/PcPage/pcRoutes';
 import NpcRoutes from '../components/Npc/NpcRoutes';
+import Login from '../components/Login/Login';
 
 firebaseApp();
 
@@ -45,6 +46,7 @@ class App extends Component {
                 <Switch>
                   <Route component={PcRoutes}path='/pc'/>
                   <Route component={NpcRoutes} path='/' />
+                  <Route component={Login} path='/login' />
                 </Switch>
               </div>
             </Container>
