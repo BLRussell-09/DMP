@@ -3,7 +3,7 @@ import axios from 'axios';
 const getPcs = (user) => {
   return new Promise((resolve, reject) =>
   {
-    axios.get(`https://localhost:44312/api/user/${user}/pcs`)
+    axios.get(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/user/${user}/pcs`)
     .then((res) =>
     {
       resolve(res.data);

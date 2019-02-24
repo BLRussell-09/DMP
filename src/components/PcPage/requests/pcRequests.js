@@ -4,7 +4,7 @@ const addPc = (pc) =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.post(`https://localhost:44312/api/pc/add`, pc)
+    axios.post(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/pc/add`, pc)
           .then((res) =>
           {
             resolve(res);
@@ -20,7 +20,7 @@ const getPc = (id) =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.get(`https://localhost:44312/api/pc/${id}`)
+    axios.get(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/pc/${id}`)
     .then((res) =>
     {
       resolve(res.data);
@@ -35,7 +35,7 @@ const updatePc = (pc, id) =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.put(`https://localhost:44312/api/pc/${id}`, pc)
+    axios.put(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/pc/${id}`, pc)
     .then((res) =>
     {
       resolve(res);

@@ -4,7 +4,7 @@ const getRandomNpc = () =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.get(`https://localhost:44312/api/npc/random`)
+    axios.get(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/npc/random`)
     .then((res) =>
     {
       resolve(res.data);

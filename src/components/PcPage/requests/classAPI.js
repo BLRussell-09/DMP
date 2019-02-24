@@ -4,7 +4,7 @@ const getClasses = () =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.get(`https://localhost:44312/api/class`)
+    axios.get(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/class`)
     .then((res) =>
     {
       resolve(res.data)

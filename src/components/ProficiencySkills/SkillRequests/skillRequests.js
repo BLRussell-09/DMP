@@ -4,7 +4,7 @@ const updateSkills = (skills) =>
 {
   return new Promise((resolve, reject) =>
   {
-    axios.put(`https://localhost:44312/api/skill/`, skills)
+    axios.put(`https://dungeonmastersapi20190214061000.azurewebsites.net/api/skill/`, skills)
     .then((res) =>
     {
       resolve(res);
