@@ -18,6 +18,11 @@ class Navibar extends Component {
       logout();
     };
 
+    const loginUser = () =>
+    {
+      this.props.history.push('/login');
+    };
+
     return (
       <div className="Navibar">
               {
@@ -36,10 +41,10 @@ class Navibar extends Component {
                 ): (
                   <div>
                     <Navbar bg="dark" variant="dark">
-                      <Navbar.Brand href="/">DMB</Navbar.Brand>
+                      <Navbar.Brand href="/">DMP</Navbar.Brand>
                       <Nav className="mr-auto"></Nav>
                       <Nav>
-                        <Nav.Link href="/login">Login</Nav.Link>
+                        <Nav.Link href="/login" onClick={loginUser}>Login</Nav.Link>
                       </Nav>
                     </Navbar>
                   </div>
