@@ -1,4 +1,4 @@
-import constants from '../constants';
+import constants from '../src/constants';
 import firebase from 'firebase';
 
 const firebaseApp = () =>
