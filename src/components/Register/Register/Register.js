@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {Form, Button, Col, Row} from 'react-bootstrap';
-import auth from '../../firebase_requests/auth';
-import './Login.css';
+import React , {Component} from 'react';
+import {Row, Col, Form, Button} from 'react-bootstrap';
+import auth from '../../../firebase_requests/auth';
+import './Register.css';
 
-class Login extends Component
+class Register extends Component
 {
   state =
   {
@@ -27,37 +27,32 @@ class Login extends Component
     this.setState({user: tempUser});
   };
 
-  login = e =>
+  register = e =>
   {
     const {user} = this.state;
     e.preventDefault();
-    auth.loginUser(user)
+    auth.registerUser(user)
     .then(() =>
     {
-      this.props.history.push('/pc');
+      this.props.history.push('/pc')
     }).catch((err) =>
     {
       console.error(err);
     });
   };
 
-  registerPage = () =>
-  {
-    this.props.history.push('/register');
-  }
-
   render()
   {
-    return(
-      <div >
+    return (
+      <div className="register">
         <Row>
-          <Col md={{span: 4, offset: 3}} className="Login">
+          <Col md={{span: 6, offset: 3}}  className="register">
             <Form>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email"  onChange={this.emailChange}/>
                 <Form.Text className="text-muted">
-                  Welcome back!
+                  We'll never share your email with anyone else.
                 </Form.Text>
               </Form.Group>
 
@@ -65,16 +60,15 @@ class Login extends Component
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" onChange={this.passwordChange}/>
               </Form.Group>
-              <Button variant="primary" type="submit" onClick={this.login}>
-                Login
+              <Button variant="primary" type="submit" onClick={this.register}>
+                Register
               </Button>
-              <h5 onClick={this.registerPage}>Need to register? Click here </h5>
             </Form>
           </Col>
         </Row>
       </div>
-    );
+    )
   }
 }
 
-export default Login;
+export default Register

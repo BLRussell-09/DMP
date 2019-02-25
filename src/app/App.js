@@ -9,6 +9,8 @@ import './App.css';
 import PcRoutes from '../components/PcPage/pcRoutes';
 import NpcRoutes from '../components/Npc/NpcRoutes';
 import LoginRoutes from '../components/Login/LoginRoutes';
+import RegisterRoutes from '../components/Register/registerRoutes';
+import Register from '../components/Register/Register/Register';
 
 firebaseApp();
 
@@ -44,9 +46,10 @@ class App extends Component {
             <Container fluid>
               <div>
                 <Switch>
+                  <Route component={LoginRoutes} authed={this.state.authed} path='/login' />
+                  <Route component={Register} authed={this.state.authed} exact path='/register' />
                   <Route component={PcRoutes}path='/pc'/>
                   <Route component={NpcRoutes} path='/' />
-                  <Route component={LoginRoutes} path='/logins' />
                 </Switch>
               </div>
             </Container>
