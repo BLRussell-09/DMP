@@ -35,7 +35,7 @@ class Navibar extends Component {
                       <LootModal/>
                     </Nav>
                     <Nav>
-                      <Nav.Link href="/loginMe" onClick={logoutUser}>Logout</Nav.Link>
+                      <Nav.Link href="/login" onClick={logoutUser}>Logout</Nav.Link>
                     </Nav>
                 </Navbar>
                 ): (
@@ -44,7 +44,7 @@ class Navibar extends Component {
                       <Navbar.Brand href="/">DMP</Navbar.Brand>
                       <Nav className="mr-auto"></Nav>
                       <Nav>
-                        <Nav.Link href="/login" onClick={loginUser}>Login</Nav.Link>
+                        <Nav.Link href='/login' >Login</Nav.Link>
                       </Nav>
                     </Navbar>
                   </div>
