@@ -6,7 +6,8 @@ class AbilityScoreGen extends Component  {
 
   scoreChange = (e) =>
   {
-    this.props.formField("strength", e);
+    this.props.formField(e.target.id, e);
+    console.log(e.target.id);
   }
 
   render()
@@ -50,7 +51,7 @@ class AbilityScoreGen extends Component  {
             <InputGroup.Prepend>
               <Button className="addCharDiceBtn" variant="outline-secondary" onClick={dicePop.bind(this, "dexterity")}>Roll</Button>
             </InputGroup.Prepend>
-            <FormControl aria-describedby="basic-addon1" id="dexterity" type="number" min="1" max="22"/>
+            <FormControl aria-describedby="basic-addon1" id="dexterity" type="number" min="1" max="22" onChange={this.scoreChange}/>
           </InputGroup>
           </Col>
         </Row>
@@ -61,7 +62,7 @@ class AbilityScoreGen extends Component  {
             <InputGroup.Prepend>
               <Button className="addCharDiceBtn" variant="outline-secondary" onClick={dicePop.bind(this, "constitution")}>Roll</Button>
             </InputGroup.Prepend>
-            <FormControl aria-describedby="basic-addon1" id="constitution" type="number" min="1" max="22"/>
+            <FormControl aria-describedby="basic-addon1" id="constitution" type="number" min="1" max="22" onChange={this.scoreChange}/>
           </InputGroup>
           </Col>
           <Col md={6}>
@@ -70,7 +71,7 @@ class AbilityScoreGen extends Component  {
             <InputGroup.Prepend>
               <Button className="addCharDiceBtn" variant="outline-secondary" onClick={dicePop.bind(this, "intelligence")}>Roll</Button>
             </InputGroup.Prepend>
-            <FormControl aria-describedby="basic-addon1" id="intelligence" type="number" min="1" max="22"/>
+            <FormControl aria-describedby="basic-addon1" id="intelligence" type="number" min="1" max="22" onChange={this.scoreChange}/>
           </InputGroup>
           </Col>
         </Row>
@@ -81,7 +82,7 @@ class AbilityScoreGen extends Component  {
             <InputGroup.Prepend>
               <Button className="addCharDiceBtn" variant="outline-secondary" onClick={dicePop.bind(this, "wisdom")}>Roll</Button>
             </InputGroup.Prepend>
-            <FormControl aria-describedby="basic-addon1" id="wisdom" type="number" min="1" max="22"/>
+            <FormControl aria-describedby="basic-addon1" id="wisdom" type="number" min="1" max="22" onChange={this.scoreChange}/>
           </InputGroup>
           </Col>
           <Col md={6}>
@@ -90,7 +91,7 @@ class AbilityScoreGen extends Component  {
             <InputGroup.Prepend>
               <Button className="addCharDiceBtn" variant="outline-secondary" onClick={dicePop.bind(this, "charisma")}>Roll</Button>
             </InputGroup.Prepend>
-            <FormControl aria-describedby="basic-addon1" id="charisma" type="number" min="1" max="22"/>
+            <FormControl aria-describedby="basic-addon1" id="charisma" type="number" min="1" max="22" onChange={this.scoreChange}/>
           </InputGroup>
           </Col>
         </Row>
